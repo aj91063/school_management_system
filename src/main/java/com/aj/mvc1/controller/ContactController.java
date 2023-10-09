@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -75,5 +76,11 @@ public class ContactController {
         ModelAndView modelAndView = new ModelAndView("message.html");
         modelAndView.addObject("contactMsgs",contactMsgs);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/closeMsg",method = RequestMethod.GET)
+    public String closeMsg(@RequestParam int id, Authentication authentication) {
+        contactService.updateMsgStatus(id,authentication.getName());
+        return "redirect:/displayMessages";
     }
 }
