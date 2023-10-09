@@ -136,7 +136,7 @@ public class ProjectSecurityConfig {
         http.csrf((csrf) -> csrf.ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg"))
                         .ignoringRequestMatchers(PathRequest.toH2Console()))
                 .authorizeHttpRequests((requests) -> requests.requestMatchers(mvcMatcherBuilder.pattern("/dashboard")).authenticated()
-                       // .requestMatchers(mvcMatcherBuilder.pattern("/displayMessages")).hasRole("ADMIN")
+                       .requestMatchers(mvcMatcherBuilder.pattern("/displayMessages")).hasRole("ADMIN")
                       //  .requestMatchers(mvcMatcherBuilder.pattern("/closeMsg/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll()
@@ -174,7 +174,7 @@ public class ProjectSecurityConfig {
         UserDetails admin = User.withDefaultPasswordEncoder()
                 .username("admin")
                 .password("123")
-                .roles("USER", "ADMIN")
+                .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
     }

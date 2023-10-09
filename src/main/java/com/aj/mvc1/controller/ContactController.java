@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 
 
 @Controller
@@ -66,5 +67,13 @@ public class ContactController {
 
         //log.info(">>>>>Number of times the contact form if submitted: "+contactService.getCounter());
         return "redirect:/contact";
+    }
+
+    @RequestMapping(path = "/displayMessages", method = RequestMethod.GET)
+    public ModelAndView displayMessages(Model model) {
+        List<Contact> contactMsgs = contactService.findMsgsWithOpenStatus();
+        ModelAndView modelAndView = new ModelAndView("message.html");
+        modelAndView.addObject("contactMsgs",contactMsgs);
+        return modelAndView;
     }
 }
