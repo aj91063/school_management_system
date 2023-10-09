@@ -62,9 +62,9 @@ public class ContactController {
             return "contact.html";
         }
         contactService.saveMessageDetails(contact);
-        contactService.setCounter(contactService.getCounter()+1);
+        //contactService.setCounter(contactService.getCounter()+1);
 
-        log.info(">>>>>Number of times the contact form if submitted: "+contactService.getCounter());
+        //log.info(">>>>>Number of times the contact form if submitted: "+contactService.getCounter());
         return "redirect:/contact";
     }
 }

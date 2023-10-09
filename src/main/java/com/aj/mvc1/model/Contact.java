@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data
-public class Contact {
-
+public class Contact extends BaseEntity {
+    private int contactId;
     @NotBlank(message = "Name must be blank required")
     @Size(min = 3, message = "Name must be at least 3 character.")
     String name;
@@ -26,5 +26,5 @@ public class Contact {
 
     @NotBlank(message = "Message must be blanck required")
     String message;
-
+    private String status;
 }
