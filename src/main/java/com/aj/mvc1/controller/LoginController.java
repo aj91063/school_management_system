@@ -31,7 +31,7 @@ public class LoginController {
         return "login.html";
     }
 
-  /*  @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -42,6 +42,6 @@ public class LoginController {
 
         return "redirect:/login?logout=true";
     }
-*/
+
 
 }

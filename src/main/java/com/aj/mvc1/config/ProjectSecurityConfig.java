@@ -103,7 +103,7 @@ public class ProjectSecurityConfig {
         //CSRF--> Cross Site Request Forgery
 
         http
-                //.csrf((csrfVar) -> csrfVar.disable())
+                .csrf((csrfVar) -> csrfVar.ignoringRequestMatchers("/saveMsg"))
                 .authorizeRequests()
                 .requestMatchers("/dashboard").authenticated()
                 .requestMatchers("", "/", "/home").permitAll()
@@ -114,7 +114,7 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/course").permitAll()
                 .requestMatchers("/assets/**").permitAll()
                 .requestMatchers("/login").permitAll()
-                //.requestMatchers("/logout").permitAll()
+                .requestMatchers("/logout").permitAll()
                 .and().formLogin(
                         loginConfigure->loginConfigure.loginPage("/login").defaultSuccessUrl("/dashboard")
                                 .failureUrl("/login?error=true").permitAll())
