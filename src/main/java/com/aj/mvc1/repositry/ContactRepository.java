@@ -42,6 +42,11 @@ public class ContactRepository {
         }, new ContactRowMapper());
     }
 
+    public List<Contact> findMessageWithAllStatus(){
+        String sql ="SELECT * FROM CONTACT_MSG";
+        return jdbcTemplate.query(sql, new ContactRowMapper());
+    }
+
     public int updateMsgStatus(int contactId, String status,String updatedBy) {
         String sql = "UPDATE CONTACT_MSG SET STATUS = ?, UPDATED_BY = ?,UPDATED_AT =? WHERE CONTACT_ID = ?";
         return jdbcTemplate.update(sql,new PreparedStatementSetter() {

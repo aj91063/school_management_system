@@ -84,4 +84,13 @@ public class ContactController {
         contactService.updateMsgStatus(id,authentication.getName());
         return "redirect:/displayMessages";
     }
+
+    @RequestMapping(path = "/displayAllMessages", method = RequestMethod.GET)
+    public ModelAndView displayAllMessage(){
+        List<Contact> contactMsgs = contactService.findMsgsWithAllStatus();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("allMessage.html");
+        modelAndView.addObject("contactMsgs",contactMsgs);
+        return modelAndView;
+    }
 }
