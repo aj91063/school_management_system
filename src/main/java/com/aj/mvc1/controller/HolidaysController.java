@@ -1,6 +1,8 @@
 package com.aj.mvc1.controller;
 
 import com.aj.mvc1.model.Holiday;
+import com.aj.mvc1.repositry.HolidayReposirty;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,6 +87,8 @@ public class HolidaysController {
      *
      */
 
+    @Autowired
+    HolidayReposirty holidayReposirty;
     @GetMapping(path = "/holidays/{display}")
     public String displayHolidays(@PathVariable(name = "display") String dispaly, Model model) {
             if(dispaly != null && dispaly.equals("all")){
@@ -96,7 +100,7 @@ public class HolidaysController {
                 model.addAttribute("federal",true);
             }
 
-        List<Holiday> holidays = Arrays.asList(
+     /*   List<Holiday> holidays = Arrays.asList(
                 new Holiday("Jan 1", "New Year's Day", Holiday.Type.FESTIVAL),
                 new Holiday(" Oct 31 ", "Halloween", Holiday.Type.FESTIVAL),
                 new Holiday(" Nov 24 ", "Thanksgiving Day", Holiday.Type.FESTIVAL),
@@ -105,7 +109,9 @@ public class HolidaysController {
                 new Holiday(" July 4 ", "Independence Day", Holiday.Type.FEDERAL),
                 new Holiday(" Sep 5 ", "Labor Day", Holiday.Type.FEDERAL),
                 new Holiday(" Nov 11 ", "Veterans Day", Holiday.Type.FEDERAL)
-        );
+        );*/
+        List<Holiday> holidays = holidayReposirty.findAllHoliday();
+
         Holiday.Type[] types = Holiday.Type.values();
         for (Holiday.Type type : types){
             System.out.println("Types>>> "+type);
